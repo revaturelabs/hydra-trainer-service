@@ -18,7 +18,7 @@ public class TrainerProducerConfiguration {
 	@Bean
 	public AmqpTemplate rabbitTemplate(ConnectionFactory factory) {
 		RabbitTemplate rabbitTemplate = new RabbitTemplate(factory);
-		rabbitTemplate.setExchange("revature.caliber.repos");
+		rabbitTemplate.setExchange("revature.hydra.repos");
 		return new RabbitTemplate(factory);
 	}
 

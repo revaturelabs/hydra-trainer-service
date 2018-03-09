@@ -25,7 +25,7 @@ public class TrainerRepositoryMessagingService {
 	 *
 	 * @return SimpleTrainer
 	 */
-	@RabbitListener(queues = "revature.caliber.repos.trainer")
+	@RabbitListener(queues = "revature.hydra.repos.trainer")
 	public SimpleTrainer receiveSingleSimpleTrainerRequest(String message) {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
@@ -41,7 +41,7 @@ public class TrainerRepositoryMessagingService {
 	 *
 	 * @return SimpleTrainer
 	 */
-	@RabbitListener(queues = "revature.caliber.repos.trainer.list")
+	@RabbitListener(queues = "revature.hydra.repos.trainer.list")
 	public List<SimpleTrainer> receiveListSimpleTrainerRequest(String message) {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
@@ -57,7 +57,7 @@ public class TrainerRepositoryMessagingService {
 	 *
 	 * @return Trainer
 	 */
-	@RabbitListener(queues = "revature.caliber.service.trainer")
+	@RabbitListener(queues = "revature.hydra.service.trainer")
 	public Trainer receiveSingleTrainerRequest(String message) {
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);

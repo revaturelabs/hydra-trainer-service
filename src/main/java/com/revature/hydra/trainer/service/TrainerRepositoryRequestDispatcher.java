@@ -35,7 +35,7 @@ public class TrainerRepositoryRequestDispatcher {
 		
 		if(methodName.equals("findOne")) {
 			Integer trainerId = request.get("trainerId").getAsInt();
-			result = trainerRepository.findOne(trainerId);
+			result = trainerRepository.findByTrainerId(trainerId); // was findOne
 		} else if(methodName.equals("delete")) {
 			trainerRepository.delete(request.get("trainerId").getAsInt());
 			result = null;

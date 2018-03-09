@@ -7,11 +7,11 @@ import java.util.Set;
 public class Trainer implements Serializable {
 	private static final long serialVersionUID = -2546407792912483570L;
 	
-	// Both AssignForce and Caliber have trainerId
-	// however Caliber is Integer and AssignForce is String
+	/*	Fields that have been consolidated between Caliber and AssignForce
+	 * 	TrainerId:
+	 * 		Caliber used trainerId as an int while AssignForce used a string
+	 */
 	private Integer trainerId;
-	
-	// AssignForce has firstName and lastName
 	private String name;
 	private String title;
 	private String email;
