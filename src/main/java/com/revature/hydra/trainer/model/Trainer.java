@@ -15,6 +15,7 @@ public class Trainer implements Serializable {
 	private String name;
 	private String title;
 	private String email;
+	// AssignFoce has active field, which is part of tier
 	private TrainerRole tier;
 	private Set<Batch> batches;
 	
@@ -22,7 +23,6 @@ public class Trainer implements Serializable {
 	private String resume;
 	private List<Integer> skills;
 	private List<Certification> certifications;
-	private Boolean active;
 
 	public Trainer() {
 		super();
@@ -48,7 +48,6 @@ public class Trainer implements Serializable {
 		this.resume = resume;
 		this.skills = skills;
 		this.certifications = certifications;
-		this.active = active;
 	}
 
 	public Trainer(SimpleTrainer simpleTrainer){
@@ -134,19 +133,10 @@ public class Trainer implements Serializable {
 		this.certifications = certifications;
 	}
 
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((active == null) ? 0 : active.hashCode());
 		result = prime * result + ((batches == null) ? 0 : batches.hashCode());
 		result = prime * result + ((certifications == null) ? 0 : certifications.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
@@ -168,11 +158,6 @@ public class Trainer implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Trainer other = (Trainer) obj;
-		if (active == null) {
-			if (other.active != null)
-				return false;
-		} else if (!active.equals(other.active))
-			return false;
 		if (batches == null) {
 			if (other.batches != null)
 				return false;
@@ -222,7 +207,7 @@ public class Trainer implements Serializable {
 	public String toString() {
 		return "Trainer [trainerId=" + trainerId + ", name=" + name + ", title=" + title + ", email=" + email
 				+ ", tier=" + tier + ", batches=" + batches + ", resume=" + resume + ", skills=" + skills
-				+ ", certifications=" + certifications + ", active=" + active + "]";
+				+ ", certifications=" + certifications + "]";
 	}
 
 	

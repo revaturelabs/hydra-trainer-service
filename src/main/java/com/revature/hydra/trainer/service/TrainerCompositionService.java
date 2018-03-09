@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.hydra.trainer.controller.TrainerController;
 import com.revature.hydra.trainer.model.Batch;
 import com.revature.hydra.trainer.model.SimpleBatch;
 import com.revature.hydra.trainer.model.SimpleTrainer;
@@ -27,6 +29,8 @@ public class TrainerCompositionService {
 
 	@Autowired
 	private TrainerCompositionMessagingService trainerCompositionMessagingService;
+	
+	private static final Logger log = Logger.getLogger(TrainerCompositionService.class);
 
 	/**
 	 * Save a SimpleTrainer
@@ -37,7 +41,6 @@ public class TrainerCompositionService {
 	 */
 	public void save(Trainer trainer) {
 		SimpleTrainer simpleTrainer = new SimpleTrainer(trainer);
-		
 		if(trainer.getTrainerId() == 0) simpleTrainer.setTrainerId(null);
 		trainerRepository.save(simpleTrainer);
 	}
@@ -50,7 +53,12 @@ public class TrainerCompositionService {
 	 * @return
 	 */
 	public void update(Trainer trainer) {
-		save(trainer);
+		// save(trainer);
+		log.trace("*****************");
+		log.trace("Trainer submitted was: " + trainer);
+		log.trace("*****************");
+		trainerRepository.updateTrainerInfoById(trainer.getName(), trainer.getTitle(), trainer.getTier(), trainer.getTrainerId());
+		
 	}
 
 	/**
@@ -71,11 +79,14 @@ public class TrainerCompositionService {
 	 *
 	 * @return Trainer
 	 */
-	public Trainer findOne(Integer trainerId) {
+	public Trainer findById(Integer trainerId) {
+		log.trace("******************");
+		log.trace("Trainer Id: " + trainerId);
+		log.trace("******************");
 		SimpleTrainer basis = trainerRepository.findOne(trainerId);
 		Trainer result = composeTrainer(basis);
 
-		System.out.println(result);
+		log.trace("Trainer found: " + result);
 		return result;
 	}
 	
@@ -88,10 +99,13 @@ public class TrainerCompositionService {
 	 */
 	// TODO: Need to confirm
 	public Trainer findByName(String name) {
+		log.trace("*****************");
+		log.trace("Name to find: " + name);
+		log.trace("*****************");
 		SimpleTrainer basis = trainerRepository.findByName(name);
 		Trainer result = composeTrainer(basis);
 
-		System.out.println(result);
+		log.trace("Trainer found: " + result);
 		return result;
 	}
 	
@@ -104,9 +118,13 @@ public class TrainerCompositionService {
 	 * @return Trainer
 	 */
 	public Trainer findByEmail(String email) {
+		log.trace("*******************");
+		log.trace("Email to find: " + email);
+		log.trace("*******************");
 		SimpleTrainer basis = trainerRepository.findByEmail(email);
 		Trainer result = composeTrainer(basis);
-
+		
+		log.trace("Trainer found: " + result);
 		return result;
 	}
 
@@ -136,6 +154,7 @@ public class TrainerCompositionService {
 	 * @return Trainer
 	 */
 	private Trainer composeTrainer(SimpleTrainer src) {
+		
 		List<SimpleBatch> batchSet = trainerCompositionMessagingService
 				.sendSingleSimpleBatchRequest((Integer) src.getTrainerId());
 
@@ -144,6 +163,17 @@ public class TrainerCompositionService {
 		dest.setBatches(batchSet.stream().map(x -> new Batch(x)).collect(Collectors.toSet()));
 
 		return dest;
+		
+		// For testing purposes, setting batches to null ...
+		/*
+		log.trace("****************************");
+		log.trace("Simple Trainer was: " + src);
+		log.trace("****************************");
+
+		Trainer dest = new Trainer(src);		
+		dest.setBatches(null);
+		return dest;
+		*/
 	}
 
 }

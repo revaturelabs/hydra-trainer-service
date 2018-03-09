@@ -1,4 +1,15 @@
 --------------------------------------------------------
+--  
+--------------------------------------------------------
+DROP TABLE IF EXISTS CALIBER_TRAINER;
+CREATE TABLE CALIBER_TRAINER(
+	TRAINER_ID INT(10) PRIMARY KEY,
+	EMAIL VARCHAR(30) UNIQUE NOT NULL,
+	NAME VARCHAR(30),
+	TITLE VARCHAR(30),
+	TIER VARCHAR(30)
+);
+--------------------------------------------------------
 --  DDL for Sequence TRAINER_ID_SEQUENCE
 --------------------------------------------------------
 DROP SEQUENCE IF EXISTS TRAINER_ID_SEQUENCE;

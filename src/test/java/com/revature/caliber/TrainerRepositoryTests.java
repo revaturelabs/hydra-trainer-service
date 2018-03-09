@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.revature.caliber.model.SimpleTrainer;
-import com.revature.caliber.model.TrainerRole;
-import com.revature.caliber.repository.TrainerRepository;
+import com.revature.hydra.trainer.model.SimpleTrainer;
+import com.revature.hydra.trainer.model.TrainerRole;
+import com.revature.hydra.trainer.repository.TrainerRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

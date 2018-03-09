@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,7 +25,7 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 * @return List of SimpleTrainers
 	 */
 	// was caliber, now hydra.trainer
-	@Query("select distinct t from SimpleTrainer t where t.tier<>com.revature.hydra.trainer.model.TrainerRole.ROLE_INACTIVE")
+	@Query("select distinct t from SimpleTrainer t where t.tier<>com.revature.hydra.trainer.model.TrainerRole.ROLE_INACTIVE Order By t.trainerId asc")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleTrainer> findAll();
 
@@ -35,11 +36,9 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 *
 	 * @return SimpleTrainer
 	 */
-	// TODO: Need to confirm
-	@Modifying
-	@Query("select distinct t from SimpleTrainer t where t.trainerId = ?1")
+	@Query("select distinct t from SimpleTrainer t where t.trainerId = :id")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	SimpleTrainer findByTrainerId(Integer id);
+	SimpleTrainer findByTrainerId(@Param("id") Integer id);
 	
 	/**
 	 * Find a single Trainer by name
@@ -49,10 +48,10 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 * @return SimpleTrainer
 	 */
 	// TODO: Need to confirm
-	@Modifying
-	@Query("select distinct t from SimpleTrainer t where t.name = ?1")
+	// @Modifying
+	@Query("select distinct t from SimpleTrainer t where t.name = :name")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	SimpleTrainer findByName(String name);
+	SimpleTrainer findByName(@Param("name") String name);
 	
 	/**
 	 * Create a list of all unique titles for trainers
@@ -72,8 +71,9 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 *
 	 * @return SimpleTrainer
 	 */
+	@Query("select distinct t from SimpleTrainer t where t.email = :email")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	SimpleTrainer findByEmail(String email);
+	SimpleTrainer findByEmail(@Param("email") String email);
 	
 	/**
 	 * Update a single trainer's name, title, tier by finding them by an id

@@ -72,12 +72,12 @@ public class TrainerController {
 	 * @param email
 	 * @return
 	 */
-	@RequestMapping(value = "/training/trainer/byemail/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/training/trainer/byemail/{email}/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	// @PreAuthorize("permitAll")
 	public ResponseEntity<Trainer> findTrainerByEmail(@PathVariable String email) {
-		log.info("Find trainer by email " + email);
-		//Trainer trainer = trainerCompositionService.findByEmail(email);
-		return new ResponseEntity<>(new Trainer(), HttpStatus.OK);
+		log.trace("Find trainer by email " + email);
+		Trainer trainer = trainerCompositionService.findByEmail(email);
+		return new ResponseEntity<>(trainer, HttpStatus.OK);
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class TrainerController {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Trainer> findTrainerById(@PathVariable("id") Integer id){
 		log.info("Fetching trainer base on id.");
-		return new ResponseEntity<>(trainerCompositionService.findOne(id), HttpStatus.FOUND);
+		return new ResponseEntity<>(trainerCompositionService.findById(id), HttpStatus.FOUND);
 	}
 	
 	/**
