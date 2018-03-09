@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.hydra.trainer.model.SimpleTrainer;
-import com.revature.hydra.trainer.model.Trainer;
-import com.revature.hydra.trainer.model.TrainerRole;
+import com.revature.beans.SimpleTrainer;
+import com.revature.beans.Trainer;
+import com.revature.beans.TrainerRole;
 import com.revature.hydra.trainer.repository.TrainerRepository;
 import com.revature.hydra.trainer.service.TrainerCompositionService;
 

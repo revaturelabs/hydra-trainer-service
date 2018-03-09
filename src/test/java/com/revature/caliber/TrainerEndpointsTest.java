@@ -25,7 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
-import com.revature.hydra.trainer.model.Trainer;
+import com.revature.beans.Trainer;
 import com.revature.hydra.trainer.service.TrainerCompositionService;
 
 @RunWith(SpringRunner.class)

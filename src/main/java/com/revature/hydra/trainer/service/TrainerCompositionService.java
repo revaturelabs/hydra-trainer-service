@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.beans.Batch;
+import com.revature.beans.SimpleBatch;
+import com.revature.beans.SimpleTrainer;
+import com.revature.beans.Trainer;
 import com.revature.hydra.trainer.controller.TrainerController;
-import com.revature.hydra.trainer.model.Batch;
-import com.revature.hydra.trainer.model.SimpleBatch;
-import com.revature.hydra.trainer.model.SimpleTrainer;
-import com.revature.hydra.trainer.model.Trainer;
 import com.revature.hydra.trainer.repository.TrainerRepository;
 
 @RestController

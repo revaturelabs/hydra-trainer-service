@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.hydra.trainer.model.SimpleTrainer;
-import com.revature.hydra.trainer.model.TrainerRole;
+import com.revature.beans.SimpleTrainer;
+import com.revature.beans.TrainerRole;
 
 @Repository
 public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer> {
@@ -25,7 +25,7 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 * @return List of SimpleTrainers
 	 */
 	// was caliber, now hydra.trainer
-	@Query("select distinct t from SimpleTrainer t where t.tier<>com.revature.hydra.trainer.model.TrainerRole.ROLE_INACTIVE Order By t.trainerId asc")
+	@Query("select distinct t from SimpleTrainer t where t.tier<>com.revature.beans.TrainerRole.ROLE_INACTIVE Order By t.trainerId asc")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleTrainer> findAll();
 

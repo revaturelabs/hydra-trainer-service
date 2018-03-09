@@ -2,12 +2,13 @@ package com.revature.hydra.trainer.service;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonObject;
-import com.revature.hydra.trainer.model.SimpleTrainer;
-import com.revature.hydra.trainer.model.Trainer;
+import com.revature.beans.SimpleTrainer;
+import com.revature.beans.Trainer;
 import com.revature.hydra.trainer.repository.TrainerRepository;
 
 @Service
@@ -18,6 +19,8 @@ public class TrainerRepositoryRequestDispatcher {
 	
 	@Autowired
 	private TrainerCompositionService trainerService;
+	
+	private static final Logger log = Logger.getLogger(TrainerRepositoryRequestDispatcher.class);
 	
 	/**
 	 * Parse JsonObject for method to execute
@@ -30,6 +33,7 @@ public class TrainerRepositoryRequestDispatcher {
 	 * @return result
 	 */
 	public SimpleTrainer processSingleSimpleTrainerRequest(JsonObject request) {
+		
 		SimpleTrainer result = null;
 		String methodName = request.get("methodName").getAsString();
 		

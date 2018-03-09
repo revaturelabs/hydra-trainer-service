@@ -1,4 +1,4 @@
-package com.revature.hydra.trainer.model;
+package com.revature.beans;
 
 public class Certification {
 	private String url;

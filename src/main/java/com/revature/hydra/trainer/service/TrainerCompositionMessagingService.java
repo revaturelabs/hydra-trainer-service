@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonObject;
-import com.revature.hydra.trainer.model.SimpleBatch;
+import com.revature.beans.SimpleBatch;
 
 @Service
 public class TrainerCompositionMessagingService {

@@ -1,41 +1,40 @@
-package com.revature.hydra.trainer.model;
+package com.revature.beans;
 
 import java.io.Serializable;
+import java.util.Set;
 
-/**
- * The type Simple Category.
- */
-public class SimpleCategory implements Serializable {
-	private static final long serialVersionUID = -9222096298296205812L;
+public class Category implements Serializable {
+	private static final long serialVersionUID = 3363756954535297728L;
 
 	private Integer categoryId;
 	private String skillCategory;
 	private Boolean active;
+	private Set<Assessment> assessments;
 
 	/**
 	 * Instantiates a new Category.
 	 */
-	public SimpleCategory() {
+	public Category() {
 		super();
 	}
 
 	/**
 	 * Create new category
-	 * 
+	 *
 	 * @param skillCategory
 	 * @param active
 	 */
-	public SimpleCategory(String skillCategory, Boolean active) {
-		super();
+	public Category(String skillCategory, Boolean active) {
+		this();
 		this.skillCategory = skillCategory;
 		this.active = active;
 	}
 
-	public SimpleCategory(Category category) {
-		super();
-		this.categoryId = category.getCategoryId();
-		this.skillCategory = category.getSkillCategory();
-		this.active = category.isActive();
+	public Category(SimpleCategory simpleCategory){
+		this();
+		this.categoryId = simpleCategory.getCategoryId();
+		this.skillCategory = simpleCategory.getSkillCategory();
+		this.active = simpleCategory.isActive();
 	}
 
 	/**
@@ -84,10 +83,29 @@ public class SimpleCategory implements Serializable {
 		this.active = active;
 	}
 
+	/**
+	 * Gets assessments.
+	 *
+	 * @return the assessments
+	 */
+	public Set<Assessment> getAssessments() {
+		return assessments;
+	}
+
+	/**
+	 * Sets assessments.
+	 *
+	 * @param assessments
+	 *            the assessments
+	 */
+	public void setAssessments(Set<Assessment> assessments) {
+		this.assessments = assessments;
+	}
+
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
+		final Integer prime = 31;
+		Integer result = 1;
 		result = prime * result + (active ? 1231 : 1237);
 		result = prime * result + ((skillCategory == null) ? 0 : skillCategory.hashCode());
 		return result;
@@ -101,7 +119,7 @@ public class SimpleCategory implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SimpleCategory other = (SimpleCategory) obj;
+		Category other = (Category) obj;
 		if (active != other.active)
 			return false;
 		if (skillCategory == null) {
@@ -116,4 +134,5 @@ public class SimpleCategory implements Serializable {
 	public String toString() {
 		return skillCategory;
 	}
+
 }
