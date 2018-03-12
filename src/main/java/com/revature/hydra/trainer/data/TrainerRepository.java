@@ -1,4 +1,4 @@
-package com.revature.hydra.trainer.repository;
+package com.revature.hydra.trainer.data;
 
 import java.util.List;
 
@@ -24,7 +24,6 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 *
 	 * @return List of SimpleTrainers
 	 */
-	// was caliber, now hydra.trainer
 	@Query("select distinct t from SimpleTrainer t where t.tier<>com.revature.beans.TrainerRole.ROLE_INACTIVE Order By t.trainerId asc")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleTrainer> findAll();
@@ -83,7 +82,7 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 * @return
 	 */
 	@Modifying
-	@Query("update SimpleTrainer t set t.name = ?1, t.title = ?2, t.tier = ?3 where t.trainerId = ?4")
+	@Query("update SimpleTrainer t set t.name = ?1, t.title = ?2, t.tier = ?3, t.resume = ?4 where t.trainerId = ?5")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	void updateTrainerInfoById(String name, String title, TrainerRole tier, Integer userId);
+	void updateTrainerInfoById(String name, String title, TrainerRole tier, String resume, Integer userId);
 }

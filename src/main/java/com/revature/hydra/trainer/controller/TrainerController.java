@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.beans.SimpleTrainer;
 import com.revature.beans.Trainer;
 import com.revature.beans.TrainerRole;
-import com.revature.hydra.trainer.repository.TrainerRepository;
+import com.revature.hydra.trainer.data.TrainerRepository;
 import com.revature.hydra.trainer.service.TrainerCompositionService;
 
 @RestController

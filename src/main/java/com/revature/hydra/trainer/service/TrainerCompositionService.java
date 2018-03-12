@@ -14,8 +14,7 @@ import com.revature.beans.Batch;
 import com.revature.beans.SimpleBatch;
 import com.revature.beans.SimpleTrainer;
 import com.revature.beans.Trainer;
-import com.revature.hydra.trainer.controller.TrainerController;
-import com.revature.hydra.trainer.repository.TrainerRepository;
+import com.revature.hydra.trainer.data.TrainerRepository;
 
 @RestController
 @RequestMapping(value = "/trainer")
@@ -54,10 +53,10 @@ public class TrainerCompositionService {
 	 */
 	public void update(Trainer trainer) {
 		// save(trainer);
-		log.trace("*****************");
-		log.trace("Trainer submitted was: " + trainer);
-		log.trace("*****************");
-		trainerRepository.updateTrainerInfoById(trainer.getName(), trainer.getTitle(), trainer.getTier(), trainer.getTrainerId());
+		log.info("*****************");
+		log.info("Trainer submitted was: " + trainer);
+		log.info("*****************");
+		trainerRepository.updateTrainerInfoById(trainer.getName(), trainer.getTitle(), trainer.getTier(), trainer.getResume(), trainer.getTrainerId());
 		
 	}
 
@@ -80,13 +79,14 @@ public class TrainerCompositionService {
 	 * @return Trainer
 	 */
 	public Trainer findById(Integer trainerId) {
-		log.trace("******************");
-		log.trace("Trainer Id: " + trainerId);
-		log.trace("******************");
-		SimpleTrainer basis = trainerRepository.findOne(trainerId);
+		log.info("******************");
+		log.info("Trainer Id: " + trainerId);
+		log.info("******************");
+		SimpleTrainer basis = trainerRepository.findByTrainerId(trainerId);
+		log.info("Simple Trainer Found: " + basis);
 		Trainer result = composeTrainer(basis);
 
-		log.trace("Trainer found: " + result);
+		log.info("Trainer found: " + result);
 		return result;
 	}
 	
@@ -160,20 +160,9 @@ public class TrainerCompositionService {
 
 		Trainer dest = new Trainer(src);
 
-		dest.setBatches(batchSet.stream().map(x -> new Batch(x)).collect(Collectors.toSet()));
-
-		return dest;
-		
-		// For testing purposes, setting batches to null ...
-		/*
-		log.trace("****************************");
-		log.trace("Simple Trainer was: " + src);
-		log.trace("****************************");
-
-		Trainer dest = new Trainer(src);		
+		// dest.setBatches(batchSet.stream().map(x -> new Batch(x)).collect(Collectors.toSet()));
 		dest.setBatches(null);
 		return dest;
-		*/
 	}
 
 }

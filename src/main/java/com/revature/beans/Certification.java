@@ -1,6 +1,22 @@
 package com.revature.beans;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * The type Certification
+ */
+
 public class Certification {
+	
+	private int certId;
+	
+	
 	private String url;
 	private String name;
 	private int trainer;

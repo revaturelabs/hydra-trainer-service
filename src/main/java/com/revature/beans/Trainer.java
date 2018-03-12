@@ -9,17 +9,22 @@ public class Trainer implements Serializable {
 	
 	/*	Fields that have been consolidated between Caliber and AssignForce
 	 * 	TrainerId:
-	 * 		Caliber used trainerId as an int while AssignForce used a string
+	 * 		Caliber used trainerId as an int, while AssignForce used a string for the Id
+	 * 	Name:
+	 * 		Caliber used a single String for name, while AssignForce used two Strings: firstName, lastName
+	 *  Tier:
+	 *  	Caliber used a TrainerRole class to differentiate between an active trainer and an inactive trainer
+	 *  	AssignForce used a Boolean value.
+	 *  
 	 */
 	private Integer trainerId;
 	private String name;
 	private String title;
 	private String email;
-	// AssignFoce has active field, which is part of tier
 	private TrainerRole tier;
 	private Set<Batch> batches;
 	
-	// Adding AssignForce Fields
+	// AssignForce specific fields
 	private String resume;
 	private List<Integer> skills;
 	private List<Certification> certifications;
@@ -57,6 +62,7 @@ public class Trainer implements Serializable {
 		this.title = simpleTrainer.getTitle();
 		this.email = simpleTrainer.getEmail();
 		this.tier = simpleTrainer.getTier();
+		this.resume = simpleTrainer.getResume();
 	}
 
 	public Integer getTrainerId() {

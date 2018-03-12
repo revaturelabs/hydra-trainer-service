@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.JsonObject;
 import com.revature.beans.SimpleTrainer;
 import com.revature.beans.Trainer;
-import com.revature.hydra.trainer.repository.TrainerRepository;
+import com.revature.hydra.trainer.data.TrainerRepository;
 
 @Service
 public class TrainerRepositoryRequestDispatcher {
@@ -39,7 +39,7 @@ public class TrainerRepositoryRequestDispatcher {
 		
 		if(methodName.equals("findOne")) {
 			Integer trainerId = request.get("trainerId").getAsInt();
-			result = trainerRepository.findByTrainerId(trainerId); // was findOne
+			result = trainerRepository.findOne(trainerId); // was findByTrainerId
 		} else if(methodName.equals("delete")) {
 			trainerRepository.delete(request.get("trainerId").getAsInt());
 			result = null;

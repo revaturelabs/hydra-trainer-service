@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * The type Simple Trainer.
  */
 @Entity
-@Table(name = "CALIBER_TRAINER")
+@Table(name = "HYDRA_TRAINER")
 @Cacheable
 public class SimpleTrainer implements Serializable {
 	private static final long serialVersionUID = 4555033024866490022L;
@@ -56,18 +56,30 @@ public class SimpleTrainer implements Serializable {
 	@Column(name = "TIER")
 	private TrainerRole tier;
 	
-	
+	@NotEmpty
+	@Column(name = "RESUME", nullable = false)
+	@JsonProperty
+	private String resume;
 
 	public SimpleTrainer() {
 		super();
 	}
-
+	/*
 	public SimpleTrainer(String email, String name, String title, TrainerRole tier) {
 		super();
 		this.email = email;
 		this.name = name;
 		this.title = title;
 		this.tier = tier;
+	}
+	*/
+	public SimpleTrainer(String email, String name, String title, TrainerRole tier, String resume) {
+		super();
+		this.email = email;
+		this.name = name;
+		this.title = title;
+		this.tier = tier;
+		this.resume = resume;
 	}
 
 	public SimpleTrainer(Trainer trainer) {
@@ -77,6 +89,7 @@ public class SimpleTrainer implements Serializable {
 		this.name = trainer.getName();
 		this.title = trainer.getTitle();
 		this.tier = trainer.getTier();
+		this.resume = trainer.getResume();
 	}
 
 	public Integer getTrainerId() {
@@ -119,14 +132,24 @@ public class SimpleTrainer implements Serializable {
 		this.tier = tier;
 	}
 
+	public String getResume() {
+		return resume;
+	}
+
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((resume == null) ? 0 : resume.hashCode());
 		result = prime * result + ((tier == null) ? 0 : tier.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((trainerId == null) ? 0 : trainerId.hashCode());
 		return result;
 	}
 
@@ -149,20 +172,29 @@ public class SimpleTrainer implements Serializable {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (resume == null) {
+			if (other.resume != null)
+				return false;
+		} else if (!resume.equals(other.resume))
+			return false;
+		if (tier != other.tier)
+			return false;
 		if (title == null) {
 			if (other.title != null)
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (tier != other.tier)
+		if (trainerId == null) {
+			if (other.trainerId != null)
+				return false;
+		} else if (!trainerId.equals(other.trainerId))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Trainer [trainerId=" + trainerId + ", email=" + email + ", name=" + name + ", title=" + title
-				+ ", tier=" + tier + "]";
+		return "SimpleTrainer [trainerId=" + trainerId + ", name=" + name + ", title=" + title + ", email=" + email
+				+ ", tier=" + tier + ", resume=" + resume + "]";
 	}
-
 }

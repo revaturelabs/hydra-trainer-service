@@ -1,4 +1,4 @@
-package com.revature.caliber;
+package com.revature.hydra;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.beans.SimpleTrainer;
 import com.revature.beans.TrainerRole;
-import com.revature.hydra.trainer.repository.TrainerRepository;
+import com.revature.hydra.trainer.data.TrainerRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -47,7 +47,7 @@ public class TrainerRepositoryTests {
 	
 	@Test
 	public void TestupdateTrainerInfoById() {
-		test.updateTrainerInfoById("test", "test", TrainerRole.ROLE_INACTIVE, (Integer) 1);
-		assertNotNull(test.findOne(1));
+		test.updateTrainerInfoById("test", "test", TrainerRole.ROLE_INACTIVE, "resume1", (Integer) 1);
+		assertNotNull(test.findByTrainerId(1));
 	}
 }
