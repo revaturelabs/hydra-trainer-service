@@ -1,15 +1,20 @@
 package com.revature.beans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -60,27 +65,28 @@ public class SimpleTrainer implements Serializable {
 	@Column(name = "RESUME", nullable = false)
 	@JsonProperty
 	private String resume;
+	
+	@NotEmpty
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "TRAINER_CERT", joinColumns = @JoinColumn(name = "t_id"), inverseJoinColumns = @JoinColumn(name = "c_id"))
+	private List<Certification> certifications;
 
 	public SimpleTrainer() {
 		super();
 	}
-	/*
-	public SimpleTrainer(String email, String name, String title, TrainerRole tier) {
+
+	public SimpleTrainer(Integer trainerId, String name, String title, String email, TrainerRole tier, String resume,
+			List<Certification> certifications) {
 		super();
-		this.email = email;
+		this.trainerId = trainerId;
 		this.name = name;
 		this.title = title;
-		this.tier = tier;
-	}
-	*/
-	public SimpleTrainer(String email, String name, String title, TrainerRole tier, String resume) {
-		super();
 		this.email = email;
-		this.name = name;
-		this.title = title;
 		this.tier = tier;
 		this.resume = resume;
+		this.certifications = certifications;
 	}
+
 
 	public SimpleTrainer(Trainer trainer) {
 		super();
@@ -140,10 +146,19 @@ public class SimpleTrainer implements Serializable {
 		this.resume = resume;
 	}
 
+	public List<Certification> getCertifications() {
+		return certifications;
+	}
+
+	public void setCertifications(List<Certification> certifications) {
+		this.certifications = certifications;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((certifications == null) ? 0 : certifications.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((resume == null) ? 0 : resume.hashCode());
@@ -162,6 +177,11 @@ public class SimpleTrainer implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		SimpleTrainer other = (SimpleTrainer) obj;
+		if (certifications == null) {
+			if (other.certifications != null)
+				return false;
+		} else if (!certifications.equals(other.certifications))
+			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -195,6 +215,6 @@ public class SimpleTrainer implements Serializable {
 	@Override
 	public String toString() {
 		return "SimpleTrainer [trainerId=" + trainerId + ", name=" + name + ", title=" + title + ", email=" + email
-				+ ", tier=" + tier + ", resume=" + resume + "]";
+				+ ", tier=" + tier + ", resume=" + resume + ", certifications=" + certifications + "]";
 	}
 }

@@ -1,10 +1,18 @@
 package com.revature.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,24 +20,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * The type Certification
  */
 
+@Entity
+@Table(name = "HYDRA_CERTIFICATION")
 public class Certification {
 	
+	@Id
+	@Column(name="CERT_ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CERT_ID_SEQUENCE")
+	@SequenceGenerator(name = "CERT_ID_SEQUENCE", sequenceName = "CERT_ID_SEQUENCE")
+	@JsonProperty
 	private int certId;
 	
-	
+	@NotEmpty
+	@Column(name = "URL", nullable = false)
+	@JsonProperty
 	private String url;
+	
+	@NotEmpty
+	@Column(name = "Name", nullable = false)
+	@JsonProperty
 	private String name;
-	private int trainer;
 	
 	public Certification() {
 		super();
 	}
 
-	public Certification(String url, String name, int trainer) {
+	public Certification(String url, String name, Integer trainer) {
 		super();
 		this.url = url;
 		this.name = name;
-		this.trainer = trainer;
 	}
 	
 	// AssignForce has this pair of setter and getter as getFile
@@ -48,17 +67,9 @@ public class Certification {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public int getTrainer() {
-		return trainer;
-	}
-
-	public void setTrainer(int trainer) {
-		this.trainer = trainer;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "Certification [File=" + url + ", name=" + name + ", trainer=" + trainer + "]";
+		return "Certification [File=" + url + ", name=" + name + "]";
 	}
 }

@@ -3,4 +3,5 @@ spring:
     name: trainer
   cloud:
     config:
-      uri: http://35.183.9.62:8888
+      uri: http://35.183.1.239:8888
+      #uri: http://35.183.1.239:8888

@@ -63,6 +63,7 @@ public class Trainer implements Serializable {
 		this.email = simpleTrainer.getEmail();
 		this.tier = simpleTrainer.getTier();
 		this.resume = simpleTrainer.getResume();
+		this.certifications = simpleTrainer.getCertifications();
 	}
 
 	public Integer getTrainerId() {

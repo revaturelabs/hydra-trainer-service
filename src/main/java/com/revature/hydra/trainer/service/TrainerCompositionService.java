@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Batch;
 import com.revature.beans.SimpleBatch;
+import com.revature.beans.SimpleTrainee;
 import com.revature.beans.SimpleTrainer;
+import com.revature.beans.Trainee;
 import com.revature.beans.Trainer;
 import com.revature.hydra.trainer.data.TrainerRepository;
 
@@ -156,12 +158,27 @@ public class TrainerCompositionService {
 	private Trainer composeTrainer(SimpleTrainer src) {
 		
 		List<SimpleBatch> batchSet = trainerCompositionMessagingService
-				.sendSingleSimpleBatchRequest((Integer) src.getTrainerId());
-
+				.sendListSimpleBatchRequest((Integer) src.getTrainerId());
 		Trainer dest = new Trainer(src);
-
-		// dest.setBatches(batchSet.stream().map(x -> new Batch(x)).collect(Collectors.toSet()));
-		dest.setBatches(null);
+		
+		dest.setBatches(batchSet.stream().map(x -> new Batch(x)).collect(Collectors.toSet()));
+		
+		// Added to populate batch ...
+		for(Batch b : dest.getBatches()){
+			for(SimpleBatch simpleB : batchSet){
+				SimpleTrainer batchTrainer = trainerRepository.findByTrainerId(simpleB.getTrainerId());
+				b.setTrainer(new Trainer(batchTrainer));
+				
+				if(simpleB.getCoTrainerId() != null){
+					SimpleTrainer batchCoTrainer = trainerRepository.findByTrainerId(simpleB.getCoTrainerId());
+					b.setCoTrainer(new Trainer(batchCoTrainer));
+				}
+				b.setTrainingType(simpleB.getTrainingType());
+				// List<SimpleTrainee> traineeSet = trainerCompositionMessagingService.sendListSimpleTraineeRequest(b.getBatchId());
+				// b.setTrainees(traineeSet.stream().map(y -> new Trainee(y)).collect(Collectors.toSet()));
+			}
+		}
+		// dest.setBatches(null);
 		return dest;
 	}
 
