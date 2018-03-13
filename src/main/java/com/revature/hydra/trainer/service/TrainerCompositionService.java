@@ -160,26 +160,28 @@ public class TrainerCompositionService {
 		List<SimpleBatch> batchSet = trainerCompositionMessagingService
 				.sendListSimpleBatchRequest((Integer) src.getTrainerId());
 		Trainer dest = new Trainer(src);
-		
-		dest.setBatches(batchSet.stream().map(x -> new Batch(x)).collect(Collectors.toSet()));
-		
-		// Added to populate batch ...
-		for(Batch b : dest.getBatches()){
-			for(SimpleBatch simpleB : batchSet){
-				SimpleTrainer batchTrainer = trainerRepository.findByTrainerId(simpleB.getTrainerId());
-				b.setTrainer(new Trainer(batchTrainer));
-				
-				if(simpleB.getCoTrainerId() != null){
-					SimpleTrainer batchCoTrainer = trainerRepository.findByTrainerId(simpleB.getCoTrainerId());
-					b.setCoTrainer(new Trainer(batchCoTrainer));
+		try{
+			dest.setBatches(batchSet.stream().map(x -> new Batch(x)).collect(Collectors.toSet()));
+			
+			// Added to populate batch ...
+			for(Batch b : dest.getBatches()){
+				for(SimpleBatch simpleB : batchSet){
+					SimpleTrainer batchTrainer = trainerRepository.findByTrainerId(simpleB.getTrainerId());
+					b.setTrainer(new Trainer(batchTrainer));
+					
+					if(simpleB.getCoTrainerId() != null){
+						SimpleTrainer batchCoTrainer = trainerRepository.findByTrainerId(simpleB.getCoTrainerId());
+						b.setCoTrainer(new Trainer(batchCoTrainer));
+					}
+					b.setTrainingType(simpleB.getTrainingType());
+					// List<SimpleTrainee> traineeSet = trainerCompositionMessagingService.sendListSimpleTraineeRequest(b.getBatchId());
+					// b.setTrainees(traineeSet.stream().map(y -> new Trainee(y)).collect(Collectors.toSet()));
 				}
-				b.setTrainingType(simpleB.getTrainingType());
-				// List<SimpleTrainee> traineeSet = trainerCompositionMessagingService.sendListSimpleTraineeRequest(b.getBatchId());
-				// b.setTrainees(traineeSet.stream().map(y -> new Trainee(y)).collect(Collectors.toSet()));
 			}
+		}catch(NullPointerException e){
+			log.error(e.getMessage());
+			dest.setBatches(null);
 		}
-		// dest.setBatches(null);
 		return dest;
 	}
-
 }
