@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonObject;
 import com.revature.beans.SimpleBatch;
+import com.revature.beans.SimpleCategory;
 import com.revature.beans.SimpleTrainee;
 
 @Service
@@ -18,6 +19,7 @@ public class TrainerCompositionMessagingService {
 
 	private static final String LIST_BATCH_ROUTING_KEY = "BSVihZkuxwdg9Dxy";
 	private static final String LIST_TRAINEE_ROUTING_KEY = "eRQ7GaBRnHgGdV9D";
+	private static final String SINGLE_SKILL_ROUTING_KEY = "utMPxDus2M9qy9Bh";
 	private static final String RABBIT_REPO_EXCHANGE = "revature.hydra.repos";
 
 	/**
@@ -52,5 +54,22 @@ public class TrainerCompositionMessagingService {
 
 		return (List<SimpleTrainee>) rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE, LIST_TRAINEE_ROUTING_KEY,
 				traineeRequest.toString());
+	}
+	
+	/**
+	 * Send a message to Skill to find a single skill associated with a given skill id
+	 *
+	 * @param skill id
+	 *
+	 * @return SimpleCategory
+	 */
+	public SimpleCategory sendSingleSimpleSkillRequest(Integer skillId) {
+		JsonObject skillRequest = new JsonObject();
+
+		skillRequest.addProperty("methodName", "findOne");
+		skillRequest.addProperty("categoryId", skillId);
+
+		return (SimpleCategory) rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE, SINGLE_SKILL_ROUTING_KEY,
+				skillRequest.toString());
 	}
 }

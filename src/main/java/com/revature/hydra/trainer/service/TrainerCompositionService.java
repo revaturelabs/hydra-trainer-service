@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Batch;
 import com.revature.beans.SimpleBatch;
-import com.revature.beans.SimpleTrainee;
+import com.revature.beans.SimpleCategory;
 import com.revature.beans.SimpleTrainer;
-import com.revature.beans.Trainee;
 import com.revature.beans.Trainer;
 import com.revature.hydra.trainer.data.TrainerRepository;
 
@@ -55,9 +54,7 @@ public class TrainerCompositionService {
 	 */
 	public void update(Trainer trainer) {
 		// save(trainer);
-		log.info("*****************");
 		log.info("Trainer submitted was: " + trainer);
-		log.info("*****************");
 		trainerRepository.updateTrainerInfoById(trainer.getName(), trainer.getTitle(), trainer.getTier(), trainer.getResume(), trainer.getTrainerId());
 		
 	}
@@ -81,14 +78,9 @@ public class TrainerCompositionService {
 	 * @return Trainer
 	 */
 	public Trainer findById(Integer trainerId) {
-		log.info("******************");
 		log.info("Trainer Id: " + trainerId);
-		log.info("******************");
 		SimpleTrainer basis = trainerRepository.findByTrainerId(trainerId);
-		log.info("Simple Trainer Found: " + basis);
 		Trainer result = composeTrainer(basis);
-
-		log.info("Trainer found: " + result);
 		return result;
 	}
 	
@@ -101,13 +93,9 @@ public class TrainerCompositionService {
 	 */
 	// TODO: Need to confirm
 	public Trainer findByName(String name) {
-		log.trace("*****************");
-		log.trace("Name to find: " + name);
-		log.trace("*****************");
+		log.info("Name to find: " + name);
 		SimpleTrainer basis = trainerRepository.findByName(name);
 		Trainer result = composeTrainer(basis);
-
-		log.trace("Trainer found: " + result);
 		return result;
 	}
 	
@@ -120,13 +108,9 @@ public class TrainerCompositionService {
 	 * @return Trainer
 	 */
 	public Trainer findByEmail(String email) {
-		log.trace("*******************");
-		log.trace("Email to find: " + email);
-		log.trace("*******************");
+		log.info("Email to find: " + email);
 		SimpleTrainer basis = trainerRepository.findByEmail(email);
-		Trainer result = composeTrainer(basis);
-		
-		log.trace("Trainer found: " + result);
+		Trainer result = composeTrainer(basis);		
 		return result;
 	}
 
@@ -156,6 +140,7 @@ public class TrainerCompositionService {
 	 * @return Trainer
 	 */
 	private Trainer composeTrainer(SimpleTrainer src) {
+		log.info("Simple Trainer was: " + src);		
 		
 		List<SimpleBatch> batchSet = trainerCompositionMessagingService
 				.sendListSimpleBatchRequest((Integer) src.getTrainerId());
@@ -181,6 +166,19 @@ public class TrainerCompositionService {
 		}catch(NullPointerException e){
 			log.error(e.getMessage());
 			dest.setBatches(null);
+		}
+		
+		if(src.getSkillId() == null){
+			dest.setSkills(null);
+		}else{
+			List<SimpleCategory> skillList = new ArrayList<SimpleCategory>();
+			for(Integer skillId : src.getSkillId()){
+				SimpleCategory skill = trainerCompositionMessagingService.sendSingleSimpleSkillRequest(skillId);
+				log.info("skill found was: " + skill + " with skill id of " + skillId);
+				if(skill != null)
+				skillList.add(skill);
+			}
+			dest.setSkills(skillList);
 		}
 		return dest;
 	}

@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -70,13 +72,19 @@ public class SimpleTrainer implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "TRAINER_CERT", joinColumns = @JoinColumn(name = "t_id"), inverseJoinColumns = @JoinColumn(name = "c_id"))
 	private List<Certification> certifications;
+	
+	@NotEmpty
+	@ElementCollection(targetClass = Integer.class)
+	@CollectionTable(name = "TRAINER_SKILL", joinColumns = @JoinColumn(name="t_id"))
+	@Column(name="SKILL_ID")
+	private List<Integer> skillId;
 
 	public SimpleTrainer() {
 		super();
 	}
 
 	public SimpleTrainer(Integer trainerId, String name, String title, String email, TrainerRole tier, String resume,
-			List<Certification> certifications) {
+			List<Certification> certifications , List<Integer> skillId) {
 		super();
 		this.trainerId = trainerId;
 		this.name = name;
@@ -85,6 +93,7 @@ public class SimpleTrainer implements Serializable {
 		this.tier = tier;
 		this.resume = resume;
 		this.certifications = certifications;
+		this.skillId = skillId;
 	}
 
 
@@ -96,6 +105,7 @@ public class SimpleTrainer implements Serializable {
 		this.title = trainer.getTitle();
 		this.tier = trainer.getTier();
 		this.resume = trainer.getResume();
+		this.certifications = trainer.getCertifications();
 	}
 
 	public Integer getTrainerId() {
@@ -154,6 +164,14 @@ public class SimpleTrainer implements Serializable {
 		this.certifications = certifications;
 	}
 
+	public List<Integer> getSkillId() {
+		return skillId;
+	}
+
+	public void setSkillId(List<Integer> skillId) {
+		this.skillId = skillId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -162,6 +180,7 @@ public class SimpleTrainer implements Serializable {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((resume == null) ? 0 : resume.hashCode());
+		result = prime * result + ((skillId == null) ? 0 : skillId.hashCode());
 		result = prime * result + ((tier == null) ? 0 : tier.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((trainerId == null) ? 0 : trainerId.hashCode());
@@ -197,6 +216,11 @@ public class SimpleTrainer implements Serializable {
 				return false;
 		} else if (!resume.equals(other.resume))
 			return false;
+		if (skillId == null) {
+			if (other.skillId != null)
+				return false;
+		} else if (!skillId.equals(other.skillId))
+			return false;
 		if (tier != other.tier)
 			return false;
 		if (title == null) {
@@ -215,6 +239,7 @@ public class SimpleTrainer implements Serializable {
 	@Override
 	public String toString() {
 		return "SimpleTrainer [trainerId=" + trainerId + ", name=" + name + ", title=" + title + ", email=" + email
-				+ ", tier=" + tier + ", resume=" + resume + ", certifications=" + certifications + "]";
+				+ ", tier=" + tier + ", resume=" + resume + ", certifications=" + certifications + ", skillId="
+				+ skillId + "]";
 	}
 }

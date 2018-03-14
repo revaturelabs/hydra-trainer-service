@@ -1,4 +1,4 @@
-package com.revature.hydra;
+package com.revature.hydra.trainer;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -41,7 +41,7 @@ public class TrainerRepositoryTests {
 	
 	@Test
 	public void TestfindByEmail() {
-		SimpleTrainer trainer = test.findByEmail("howard.johnson@hotmail.com");
+		SimpleTrainer trainer = test.findByEmail("pjw6193@hotmail.com");
 		assertNotNull(trainer);
 	}
 	

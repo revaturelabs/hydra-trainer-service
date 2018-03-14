@@ -26,7 +26,7 @@ public class Trainer implements Serializable {
 	
 	// AssignForce specific fields
 	private String resume;
-	private List<Integer> skills;
+	private List<SimpleCategory> skills;
 	private List<Certification> certifications;
 
 	public Trainer() {
@@ -42,7 +42,7 @@ public class Trainer implements Serializable {
 	}
 
 	public Trainer(Integer trainerId, String name, String title, String email, TrainerRole tier, Set<Batch> batches,
-			String resume, List<Integer> skills, List<Certification> certifications, Boolean active) {
+			String resume, List<SimpleCategory> skills, List<Certification> certifications) {
 		super();
 		this.trainerId = trainerId;
 		this.name = name;
@@ -124,11 +124,11 @@ public class Trainer implements Serializable {
 		this.resume = resume;
 	}
 
-	public List<Integer> getSkills() {
+	public List<SimpleCategory> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(List<Integer> skills) {
+	public void setSkills(List<SimpleCategory> skills) {
 		this.skills = skills;
 	}
 

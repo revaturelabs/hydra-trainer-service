@@ -1,4 +1,4 @@
-package com.revature.hydra;
+package com.revature.hydra.trainer;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.junit.Assert.assertEquals;
@@ -61,7 +61,7 @@ public class TrainerEndpointsTest {
 	@Test
 	public void findTrainerTest() throws Exception {
 		Trainer realTrainer  = trainerCompositionService.findByEmail("test@test.com");
-		ResultActions ra = mvc.perform(get("http://localhost:8081/trainer/training/trainer/byemail/test@test.com")).andExpect(status().isOk());
+		ResultActions ra = mvc.perform(get("http://localhost:8081/trainer/training/trainer/byemail/test@test.com/")).andExpect(status().isOk());
 		byte[] response = ra.andReturn().getResponse().getContentAsByteArray();
 		ObjectMapper mapper = new ObjectMapper();
 		Trainer trainer = mapper.readValue(response, Trainer.class);
