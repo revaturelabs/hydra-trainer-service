@@ -21,6 +21,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -75,6 +77,7 @@ public class SimpleTrainer implements Serializable {
 	
 	@NotEmpty
 	@ElementCollection(targetClass = Integer.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "TRAINER_SKILL", joinColumns = @JoinColumn(name="t_id"))
 	@Column(name="SKILL_ID")
 	private List<Integer> skillId;
