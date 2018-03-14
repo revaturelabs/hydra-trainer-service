@@ -70,12 +70,10 @@ public class SimpleTrainer implements Serializable {
 	@JsonProperty
 	private String resume;
 	
-	@NotEmpty
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "TRAINER_CERT", joinColumns = @JoinColumn(name = "t_id"), inverseJoinColumns = @JoinColumn(name = "c_id"))
 	private List<Certification> certifications;
 	
-	@NotEmpty
 	@ElementCollection(targetClass = Integer.class)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@CollectionTable(name = "TRAINER_SKILL", joinColumns = @JoinColumn(name="t_id"))
