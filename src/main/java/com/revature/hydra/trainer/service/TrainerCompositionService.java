@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.beans.Batch;
 import com.revature.beans.SimpleBatch;
-import com.revature.beans.SimpleCategory;
+import com.revature.beans.SimpleSkill;
 import com.revature.beans.SimpleTrainer;
 import com.revature.beans.Trainer;
 import com.revature.hydra.trainer.data.TrainerRepository;
@@ -171,9 +171,9 @@ public class TrainerCompositionService {
 		if(src.getSkillId() == null){
 			dest.setSkills(null);
 		}else{
-			List<SimpleCategory> skillList = new ArrayList<SimpleCategory>();
+			List<SimpleSkill> skillList = new ArrayList<SimpleSkill>();
 			for(Integer skillId : src.getSkillId()){
-				SimpleCategory skill = trainerCompositionMessagingService.sendSingleSimpleSkillRequest(skillId);
+				SimpleSkill skill = trainerCompositionMessagingService.sendSingleSimpleSkillRequest(skillId);
 				log.info("skill found was: " + skill + " with skill id of " + skillId);
 				if(skill != null)
 				skillList.add(skill);

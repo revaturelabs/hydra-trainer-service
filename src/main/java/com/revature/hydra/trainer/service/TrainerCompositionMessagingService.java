@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonObject;
 import com.revature.beans.SimpleBatch;
-import com.revature.beans.SimpleCategory;
+import com.revature.beans.SimpleSkill;
 import com.revature.beans.SimpleTrainee;
 
 @Service
@@ -63,13 +63,13 @@ public class TrainerCompositionMessagingService {
 	 *
 	 * @return SimpleCategory
 	 */
-	public SimpleCategory sendSingleSimpleSkillRequest(Integer skillId) {
+	public SimpleSkill sendSingleSimpleSkillRequest(Integer skillId) {
 		JsonObject skillRequest = new JsonObject();
 
 		skillRequest.addProperty("methodName", "findOne");
 		skillRequest.addProperty("categoryId", skillId);
 
-		return (SimpleCategory) rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE, SINGLE_SKILL_ROUTING_KEY,
+		return (SimpleSkill) rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE, SINGLE_SKILL_ROUTING_KEY,
 				skillRequest.toString());
 	}
 }

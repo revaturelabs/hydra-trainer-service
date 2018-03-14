@@ -13,7 +13,7 @@ public class Assessment implements Serializable {
 	private Integer rawScore;
 	private AssessmentType type;
 	private Short week;
-	private Category category;
+	private Skill skill;
 	private Set<Grade> grades = new HashSet<>();
 
 	public Assessment() {
@@ -21,14 +21,14 @@ public class Assessment implements Serializable {
 	}
 
 	public Assessment(String title, Batch batch, Integer rawScore, AssessmentType type, Integer week,
-			Category category) {
+			Skill category) {
 		this();
 		this.title = title;
 		this.batch = batch;
 		this.rawScore = rawScore;
 		this.type = type;
 		this.week = week.shortValue();
-		this.category = category;
+		this.skill = category;
 	}
 
 	public Assessment(SimpleAssessment simpleAssessment){
@@ -49,7 +49,7 @@ public class Assessment implements Serializable {
 	}
 
 	public String getTitle() {
-		return this.category.getSkillCategory() + " " + this.type.name();
+		return this.skill.getSkillName() + " " + this.type.name();
 	}
 
 	public void setTitle(String title) {
@@ -88,12 +88,12 @@ public class Assessment implements Serializable {
 		this.week = week;
 	}
 
-	public Category getCategory() {
-		return category;
+	public Skill getCategory() {
+		return skill;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	public void setCategory(Skill category) {
+		this.skill = category;
 	}
 
 	public Set<Grade> getGrades() {
@@ -109,7 +109,7 @@ public class Assessment implements Serializable {
 		final Integer prime = 31;
 		Integer result = 1;
 		result = prime * result + ((batch == null) ? 0 : batch.hashCode());
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((skill == null) ? 0 : skill.hashCode());
 		result = prime * result + rawScore;
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
@@ -131,10 +131,10 @@ public class Assessment implements Serializable {
 				return false;
 		} else if (!batch.equals(other.batch))
 			return false;
-		if (category == null) {
-			if (other.category != null)
+		if (skill == null) {
+			if (other.skill != null)
 				return false;
-		} else if (!category.equals(other.category))
+		} else if (!skill.equals(other.skill))
 			return false;
 		if (rawScore != other.rawScore)
 			return false;
@@ -153,6 +153,6 @@ public class Assessment implements Serializable {
 	@Override
 	public String toString() {
 		return "Assessment [assessmentId= " + assessmentId + " title=" + title + ", batch=" + batch + ", rawScore="
-				+ rawScore + ", type=" + type + ", week=" + week + ", category=" + category + "]";
+				+ rawScore + ", type=" + type + ", week=" + week + ", skill=" + skill + "]";
 	}
 }
