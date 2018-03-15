@@ -3,9 +3,11 @@
 The Trainer service handles CRUD operations and messaging for the trainer beans.
 
 Location of Trainer Related Beans:
+
 	com/revature/beans
 
 Trainer Specific Beans:
+
 	Trainer
 
 	SimpleTrainer
@@ -17,6 +19,7 @@ Trainer Specific Beans:
 Methods contained within this service:
 
 TrainerController - Found in com/revature/hydra/trainer/controller/
+
 	The TrainerController is where the Trainer service end points are defined.
 	
 	End Points
