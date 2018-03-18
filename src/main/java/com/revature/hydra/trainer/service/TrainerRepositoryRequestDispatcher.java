@@ -51,7 +51,7 @@ public class TrainerRepositoryRequestDispatcher {
 	/**
 	 * Parse JsonObject for method to execute
 	 * Executable methods: 
-	 * 		findOne - find all SimpleTrainer
+	 * 		findAll - find all SimpleTrainer
 	 *
 	 * @param request
 	 *
@@ -84,7 +84,6 @@ public class TrainerRepositoryRequestDispatcher {
 		if(methodName.equals("findByEmail")) {
 			result = trainerService.findByEmail(request.get("email").getAsString());
 		}
-		
 		return result;
 	}
 }

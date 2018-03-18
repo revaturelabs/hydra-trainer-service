@@ -46,8 +46,6 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 *
 	 * @return SimpleTrainer
 	 */
-	// TODO: Need to confirm
-	// @Modifying
 	@Query("select distinct t from SimpleTrainer t where t.name = :name")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	SimpleTrainer findByName(@Param("name") String name);

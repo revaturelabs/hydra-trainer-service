@@ -30,9 +30,7 @@ public class TrainerRepositoryMessagingService {
 	 */
 	@RabbitListener(queues = "revature.hydra.repos.trainer")
 	public SimpleTrainer receiveSingleSimpleTrainerRequest(String message) {
-		log.trace("******************************");
-		log.trace("Single Simple Trainer: message was:\n\t" + message);
-		log.trace("******************************");
+		log.info("Single Simple Trainer: message was:\n\t" + message);
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
 		JsonObject request = element.getAsJsonObject();
@@ -49,10 +47,7 @@ public class TrainerRepositoryMessagingService {
 	 */
 	@RabbitListener(queues = "revature.hydra.repos.trainer.list")
 	public List<SimpleTrainer> receiveListSimpleTrainerRequest(String message) {
-		log.trace("******************************");
-		log.trace("List Simple Trainer: message was:\n\t" + message);
-		log.trace("******************************");
-		
+		log.info("List Simple Trainer: message was:\n\t" + message);
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
 		JsonObject request = element.getAsJsonObject();
@@ -69,9 +64,7 @@ public class TrainerRepositoryMessagingService {
 	 */
 	@RabbitListener(queues = "revature.hydra.service.trainer")
 	public Trainer receiveSingleTrainerRequest(String message) {
-		log.trace("******************************");
-		log.trace("Single Trainer: message was:\n\t" + message);
-		log.trace("******************************");
+		log.info("Single Trainer: message was:\n\t" + message);
 		JsonParser parser = new JsonParser();
 		JsonElement element = parser.parse(message);
 		JsonObject request = element.getAsJsonObject();

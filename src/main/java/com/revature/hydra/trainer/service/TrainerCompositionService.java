@@ -91,7 +91,6 @@ public class TrainerCompositionService {
 	 *
 	 * @return Trainer
 	 */
-	// TODO: Need to confirm
 	public Trainer findByName(String name) {
 		log.info("Name to find: " + name);
 		SimpleTrainer basis = trainerRepository.findByName(name);

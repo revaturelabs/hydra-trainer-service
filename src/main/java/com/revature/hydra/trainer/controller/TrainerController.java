@@ -67,10 +67,12 @@ public class TrainerController {
 
 	/**
 	 * Finds a trainer by email. Used for logging in a user with the Salesforce
-	 * controller `
+	 * controller
+	 * Note: The final "/" is necessary for a web browser to be able to
+	 * 		 connect to the controller.
 	 *
 	 * @param email
-	 * @return
+	 * @return Trainer
 	 */
 	@RequestMapping(value = "/training/trainer/byemail/{email}/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	// @PreAuthorize("permitAll")
@@ -81,7 +83,7 @@ public class TrainerController {
 	}
 
 	/**
-	 * Deactivates the trainer
+	 * Deactivates the trainer, but does not delete them from database
 	 *
 	 * @param trainer
 	 * @return response entity
@@ -123,7 +125,7 @@ public class TrainerController {
 		return new ResponseEntity<>(trainers, HttpStatus.OK);
 	}
 	
-	// AssignForce
+	// AssignForce Specific Mappings
 	/**
 	 * Returns a trainer by their id.
 	 * 
@@ -141,6 +143,8 @@ public class TrainerController {
 	 * Returns trainer by their name
 	 * 
 	 * @param firstName, lastName
+	 * 			Assumes that a trainer's name field is stored as "firstName lastName"
+	 * 
 	 * @return Trainer
 	 */
 	@RequestMapping(value = "/vp/trainer/{firstName}/{lastName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

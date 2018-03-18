@@ -27,7 +27,7 @@ public class TrainerRepositoryServiceApplication {
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
           .select()                                  
-          .apis(RequestHandlerSelectors.basePackage("com.revature.caliber.controller"))              
+          .apis(RequestHandlerSelectors.basePackage("com.revature.hydra.trainer"))              
           .paths(PathSelectors.any())                          
           .build();
     }

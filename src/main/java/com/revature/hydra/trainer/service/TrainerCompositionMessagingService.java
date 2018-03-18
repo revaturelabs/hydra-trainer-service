@@ -67,7 +67,7 @@ public class TrainerCompositionMessagingService {
 		JsonObject skillRequest = new JsonObject();
 
 		skillRequest.addProperty("methodName", "findOne");
-		skillRequest.addProperty("categoryId", skillId);
+		skillRequest.addProperty("skillId", skillId);
 
 		return (SimpleSkill) rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE, SINGLE_SKILL_ROUTING_KEY,
 				skillRequest.toString());
