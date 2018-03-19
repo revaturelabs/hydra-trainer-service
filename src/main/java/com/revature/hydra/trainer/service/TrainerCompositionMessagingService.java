@@ -61,7 +61,7 @@ public class TrainerCompositionMessagingService {
 	 *
 	 * @param skill id
 	 *
-	 * @return SimpleCategory
+	 * @return SimpleSkill
 	 */
 	public SimpleSkill sendSingleSimpleSkillRequest(Integer skillId) {
 		JsonObject skillRequest = new JsonObject();

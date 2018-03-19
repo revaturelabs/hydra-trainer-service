@@ -136,7 +136,7 @@ public class TrainerController {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Trainer> findTrainerById(@PathVariable("id") Integer id){
 		log.info("Fetching trainer base on id.");
-		return new ResponseEntity<>(trainerCompositionService.findById(id), HttpStatus.FOUND);
+		return new ResponseEntity<>(trainerCompositionService.findById(id), HttpStatus.OK);
 	}
 	
 	/**
