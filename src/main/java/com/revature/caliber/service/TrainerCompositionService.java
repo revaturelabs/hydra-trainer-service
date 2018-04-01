@@ -19,8 +19,8 @@ import com.revature.caliber.repository.TrainerRepository;
 @RequestMapping(value = "/trainer")
 public class TrainerCompositionService {
 
-	@Autowired
-	AmqpTemplate rabbitTemplate;
+	// @Autowired
+	// AmqpTemplate rabbitTemplate;
 
 	@Autowired
 	public TrainerRepository trainerRepository;

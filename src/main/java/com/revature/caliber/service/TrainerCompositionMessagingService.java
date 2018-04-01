@@ -13,8 +13,8 @@ import com.revature.caliber.model.SimpleBatch;
 @Service
 public class TrainerCompositionMessagingService {
 
-	@Autowired
-	private AmqpTemplate rabbitTemplate;
+	// @Autowired
+	// private AmqpTemplate rabbitTemplate;
 
 	private static final String LIST_BATCH_ROUTING_KEY = "BSVihZkuxwdg9Dxy";
 	private static final String RABBIT_REPO_EXCHANGE = "revature.caliber.repos";
@@ -32,7 +32,7 @@ public class TrainerCompositionMessagingService {
 		batchRequest.addProperty("methodName", "findAllByTrainerId");
 		batchRequest.addProperty("trainerId", trainerId);
 
-		return (List<SimpleBatch>) rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE, LIST_BATCH_ROUTING_KEY,
-				batchRequest.toString());
+		return null;//(List<SimpleBatch>) rabbitTemplate.convertSendAndReceive(RABBIT_REPO_EXCHANGE, LIST_BATCH_ROUTING_KEY,
+				//batchRequest.toString());
 	}
 }
