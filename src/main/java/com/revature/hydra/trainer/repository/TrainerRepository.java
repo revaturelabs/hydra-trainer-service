@@ -23,7 +23,7 @@ public interface TrainerRepository extends JpaRepository<SimpleTrainer, Integer>
 	 *
 	 * @return List of SimpleTrainers
 	 */
-	@Query("select distinct t from SimpleTrainer t where t.tier<>com.revature.caliber.model.TrainerRole.ROLE_INACTIVE")
+	@Query("select distinct t from SimpleTrainer t where t.tier<>com.revature.hydra.trainer.model.TrainerRole.ROLE_INACTIVE")
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	List<SimpleTrainer> findAll();
 
