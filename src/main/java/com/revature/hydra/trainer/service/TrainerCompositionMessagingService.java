@@ -1,10 +1,7 @@
 package com.revature.hydra.trainer.service;
 
 import java.util.List;
-import java.util.Set;
 
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.JsonObject;

@@ -16,7 +16,7 @@ import com.revature.hydra.trainer.model.Trainer;
 import com.revature.hydra.trainer.repository.TrainerRepository;
 
 @RestController
-@RequestMapping(value = "/trainer")
+@RequestMapping("/trainer")
 public class TrainerCompositionService {
 
 	// @Autowired
