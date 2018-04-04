@@ -1,14 +1,11 @@
 language: java
-
 addons:
   sonarcloud:
-    organization: hall-github
+    organization: revaturelabs
     token:
-      secure: b/7u2nvvND5MQ2ouYk45b9bTXpSYX1U4laOYOZfS+fp8nhHKOxw5xUJvzbY55G9mBRFu4rksOv8PG5o5v1znusl5OnR5vMKaf7gwhTEwsZpFiIwItwP7fe3Xrd6QRlXX08QKoMhqWst1YAwUgKKLz6dh7o+egMe/ZcYXRlrVrntIeS+KmWSVT1yfSEzCok9IMiDmqEM2ups767lX+dWTb6Tfvxo4h3iSKHsEEqEjAITY52Yb2S64p00UPuJEdHm+J7DFje0mKkFmwa075TRq+Si0g5KzXOv7ZNY4AA8KBdt5KB3TEo4SmfxdCegVMH+Eyzd1c4qVQDDNJ58lIFop3tJrReA6CQ2eS6Qz7+MjXr5drDXntUVkSWp5ELWFiUWBAG/SmkN9N0vrWCIws0vFXdqsor8EDYYvo/2DYjSkMaGL70J0y2uVPNF958mdI1ByG+UfLsmOs1Nou2dOCvQw6RBasfg3UM0OdYTFH3vDk8OgVbTqE9HFhexov1fTV0FXc2l2QW3+804NKN6DZaEFv59S82LIQUfX2MioH3BIZWMB9e791XaW/mHwQRZ9Y/S5MWqmmdJhe3rg8xC23VH6c2lrijaaH1/WNCbuNTk+eWmrCjIRLjim7GS1GyquBEGmEda08joZCb8GElAfRKY/opKhbnGDWLCPY8oHrN4d5Wk=
-
+      secure: HQ4ejpxlYqRSgsyTqTkrwCBjZDeWXY3gduLfNo2LUpNqSxtf3mTNQBw+VAyOFAb8FoZeqtUJ10z/Ww+iO6TOd4DboQByXxc8gEDM+q91ylr2uVe44wyXKm2ov64DPYXVood9QXVe0zvGTZNToaVTtl3bfH9zzFmF5Q0cnnZhm0MvQtvUan429XQGL/6fh7fU+6kLw49rSwT224V4je9Ndh54/ZyOyJ6WDjFYejtqyUchh6X+mIZrkqrkdlxPmHI7m4PJEvdBDwQYl5ZAYHbPltlYjRjqVx8iKOoyCYOJiFEKc77EhnzHdV4AjPbPIHwMiMgfOK5hFXDCMrYojPYg0h/6ZdRemY1tNhoOAtHcyoCb8Ow2cBS90mXyyOqlyWSYsdgYCsD3LgMtv5iacWdqpHhmFm3300hAqe00qqOH21GaRy/3koMWfySWGbx231tAO/o3kKHuPawH0DfyWoq2PoKS2/QUvPU8OTqy5HtCQ0qU9NzyF7xBt9H8Ahi4Hsv/nplNgabBcGuThMJVH9ew6hGZTp+wKOAQW6HE8Q0D84tVLij2P1624E5g68D7uBLAGiRv6+CPT/ABnctZwk9NscpK98RcAY6O0w3Z53nana5AHmlSal1/TozahMUdvITSkTP8mN5xzsDzYS9BUf3yMCKd+X/PPfuo7hHnO8NKmWQ=
 script:
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 deploy:
   skip_cleanup: true
   provider: cloudfoundry
@@ -21,7 +18,6 @@ deploy:
   on:
     repo: revaturelabs/hydra-trainer-service
     branch: develop
-
 cache:
   directories:
   - "$HOME/.m2/repository"
