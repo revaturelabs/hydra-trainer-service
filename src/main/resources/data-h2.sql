@@ -1,37 +1,30 @@
---------------------------------------------------------
---  DDL for Sequence TRAINER_ID_SEQUENCE
---------------------------------------------------------
-DROP SEQUENCE IF EXISTS TRAINER_ID_SEQUENCE;
-CREATE SEQUENCE IF NOT EXISTS TRAINER_ID_SEQUENCE  MINVALUE 1 INCREMENT BY 1 START WITH 1;
-
-
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'patrick.walsh@revature.com', 'Patrick Walsh', 'Lead Trainer', 'ROLE_VP');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'pjw6193@hotmail.com', 'Dan Pickles', 'Lead Trainer', 'ROLE_VP');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'ravi.singh@revature.com', 'Ravi Singh', 'Vice President of Technology', 'ROLE_VP');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'karan.dhirar@revature.com', 'Karan Dhirar', 'Technology Manager', 'ROLE_VP');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'brian.connolly@revature.com', 'Brian Connolly', 'Senior Java Developer', 'ROLE_VP');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'genesis.bonds@revature.com', 'Genesis Bonds', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'ankit.garg@revature.com', 'Ankit Garg', 'Lead Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'ryan.lessley@revature.com', 'Ryan Lessley', 'Senior Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'steven.kelsey@revature.com', 'Steven Kelsey', 'Senior Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'emily.higgins@revature.com', 'Emily Higgins', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'taylor.kemper@revature.com', 'Taylor Kemper', 'Senior Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'richard.orr@revature.com', 'Richard Orr', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'nickolas.jurczak@revature.com', 'Nickolas Jurczak', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'august.duet@revature.com', 'August Duet', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'yuvarajd@revature.com', 'Yuvaraj Damodaran', 'Lead Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'fred.belotte@revature.com', 'Fred Belotte', 'Senior Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'mehrab.rahman@revature.com', 'Mehrab Rahman', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'peter.alagna@revature.com', 'Peter Alagna', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'stanleym@revature.com', 'Stanley Medikonda', 'Staging Manager', 'ROLE_STAGING');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'grawyne@gmail.com', 'Gray Wynne', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(TRAINER_ID_SEQUENCE.NEXTVAL, 'owallace@mailinator.com', 'Orson Wallace', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(TRAINER_ID_SEQUENCE.NEXTVAL, 'slevinson@mailinator.com', 'Shelby Levinson', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(TRAINER_ID_SEQUENCE.NEXTVAL, 'wpayne@mailinator.com', 'Walter Payne', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(TRAINER_ID_SEQUENCE.NEXTVAL, 'nchurch@mailinator.com', 'Natalie Church', 'Trainer', 'ROLE_TRAINER');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(TRAINER_ID_SEQUENCE.NEXTVAL, 'aradcliff@mailinator.com', 'Archer Radcliff', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(0, 'patrick.walsh@revature.com', 'Patrick Walsh', 'Lead Trainer', 'ROLE_VP');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(1, 'pjw6193@hotmail.com', 'Dan Pickles', 'Lead Trainer', 'ROLE_VP');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(2, 'ravi.singh@revature.com', 'Ravi Singh', 'Vice President of Technology', 'ROLE_VP');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(3, 'karan.dhirar@revature.com', 'Karan Dhirar', 'Technology Manager', 'ROLE_VP');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(4, 'brian.connolly@revature.com', 'Brian Connolly', 'Senior Java Developer', 'ROLE_VP');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(5, 'genesis.bonds@revature.com', 'Genesis Bonds', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(6, 'ankit.garg@revature.com', 'Ankit Garg', 'Lead Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(7, 'ryan.lessley@revature.com', 'Ryan Lessley', 'Senior Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(8, 'steven.kelsey@revature.com', 'Steven Kelsey', 'Senior Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(9, 'emily.higgins@revature.com', 'Emily Higgins', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(10, 'taylor.kemper@revature.com', 'Taylor Kemper', 'Senior Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(11, 'richard.orr@revature.com', 'Richard Orr', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(12, 'nickolas.jurczak@revature.com', 'Nickolas Jurczak', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(13, 'august.duet@revature.com', 'August Duet', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(14, 'yuvarajd@revature.com', 'Yuvaraj Damodaran', 'Lead Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(15, 'fred.belotte@revature.com', 'Fred Belotte', 'Senior Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(16, 'mehrab.rahman@revature.com', 'Mehrab Rahman', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(17, 'peter.alagna@revature.com', 'Peter Alagna', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(18, 'stanleym@revature.com', 'Stanley Medikonda', 'Staging Manager', 'ROLE_STAGING');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(19, 'grawyne@gmail.com', 'Gray Wynne', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(20, 'owallace@mailinator.com', 'Orson Wallace', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(21, 'slevinson@mailinator.com', 'Shelby Levinson', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(22, 'wpayne@mailinator.com', 'Walter Payne', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(23, 'nchurch@mailinator.com', 'Natalie Church', 'Trainer', 'ROLE_TRAINER');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(24, 'aradcliff@mailinator.com', 'Archer Radcliff', 'Trainer', 'ROLE_TRAINER');
 --------------------------------------------------------------------------------------------------------------------MAKE PANEL ROLE
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'rajeshy@revature.com', 'Rajesh Yamunachari', 'Senior Technical Manager', 'ROLE_PANEL');
-INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES( TRAINER_ID_SEQUENCE.NEXTVAL, 'raghavan@revature.com', 'Raghavan Swaminathan', 'Senior Technical Manager', 'ROLE_PANEL');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(25, 'rajeshy@revature.com', 'Rajesh Yamunachari', 'Senior Technical Manager', 'ROLE_PANEL');
+INSERT INTO CALIBER_TRAINER(TRAINER_ID, EMAIL, NAME, TITLE, TIER) VALUES(26, 'raghavan@revature.com', 'Raghavan Swaminathan', 'Senior Technical Manager', 'ROLE_PANEL');
 -------------TRAINER END-------------
 COMMIT;

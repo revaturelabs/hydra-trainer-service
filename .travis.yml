@@ -1,0 +1,24 @@
+language: java
+addons:
+  sonarcloud:
+    organization: revaturelabs
+    token:
+      secure: HQ4ejpxlYqRSgsyTqTkrwCBjZDeWXY3gduLfNo2LUpNqSxtf3mTNQBw+VAyOFAb8FoZeqtUJ10z/Ww+iO6TOd4DboQByXxc8gEDM+q91ylr2uVe44wyXKm2ov64DPYXVood9QXVe0zvGTZNToaVTtl3bfH9zzFmF5Q0cnnZhm0MvQtvUan429XQGL/6fh7fU+6kLw49rSwT224V4je9Ndh54/ZyOyJ6WDjFYejtqyUchh6X+mIZrkqrkdlxPmHI7m4PJEvdBDwQYl5ZAYHbPltlYjRjqVx8iKOoyCYOJiFEKc77EhnzHdV4AjPbPIHwMiMgfOK5hFXDCMrYojPYg0h/6ZdRemY1tNhoOAtHcyoCb8Ow2cBS90mXyyOqlyWSYsdgYCsD3LgMtv5iacWdqpHhmFm3300hAqe00qqOH21GaRy/3koMWfySWGbx231tAO/o3kKHuPawH0DfyWoq2PoKS2/QUvPU8OTqy5HtCQ0qU9NzyF7xBt9H8Ahi4Hsv/nplNgabBcGuThMJVH9ew6hGZTp+wKOAQW6HE8Q0D84tVLij2P1624E5g68D7uBLAGiRv6+CPT/ABnctZwk9NscpK98RcAY6O0w3Z53nana5AHmlSal1/TozahMUdvITSkTP8mN5xzsDzYS9BUf3yMCKd+X/PPfuo7hHnO8NKmWQ=
+script:
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.host.url=https://sonarcloud.io
+deploy:
+  skip_cleanup: true
+  provider: cloudfoundry
+  api: https://api.run.pivotal.io
+  username: email@bryton.io
+  password:
+    secure: EcPLGw3NhLxQEXzruIGJtarBGuttV6M1oeMKjdivPlfgNGjw490a+9a9XPuKR8Knt4mlbFfpMXT1KjNumXSzqrPiGCflUb8pyB9Ekwn/Dd5Ze0dAIglzB6tOlMoqTkB0rPnG3PEFae8undTAKvTLXZRpRfHQ1MrhLCtzdaojUhilYDtIUqFURvo2UPqh82Io+FwFe+BMYOTd5BKH25PfrCc72HsReE8+y+NLB04bISyM3bEPKghRS2APAaTJrTizbrVs8IUXm6z/KJXi+ejNW75RLO2VfUvbggEE5vd58S+8O89+MOlIXZiT5IXmLeDPc7ozSx4geYJsCw58f54cRVtKOYLLze97sqwcCmNDjqSZV4M5gsfPph/iEbWoj3Q4fF2Mpr+lqVYUknvbluAc+6QlQPzbRK/jyI5qicO/1+b8dULBw3jevTEquZDK0QafB7opAU6YHI23PEIdEbfrtCbBxKqLLgNeA4e5rkKPuBxW+0RnRmZw1T/PkuYBP9VudaN7tOOShn8OK1HjUWzMLXrls6nELw+RNN7X+FrAWEK30Pmg0aJ+jbKSVnRnf9WK/+TuVQhBOozPRmOWWwP4P/dRujA4kJp/giOt+LHOB8wFlJKO60FtwECiso9DdwP7iAEVbToW5a+sQssYHpodLSONRuxLVc172QEuS7TSaQI=
+  organization: august-duet.org
+  space: development
+  on:
+    repo: revaturelabs/hydra-trainer-service
+    branch: develop
+cache:
+  directories:
+  - "$HOME/.m2/repository"
+  - "$HOME/.sonar/cache"
