@@ -1,13 +1,11 @@
 package com.revature.hydratrainerservice.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 @Data
 @NoArgsConstructor
@@ -17,10 +15,21 @@ public class Trainer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer trainerId;
 
-    private String name;
+    private String firstName;
+    private String lastName;
     private String title;
     private String email;
+
+    @ColumnDefault("true")
+    private boolean active;
+
+    // TODO: Certifications
+
+    // TODO: Resume's
+
+    @Enumerated(EnumType.STRING)
+    private Tier tier;
 
 }

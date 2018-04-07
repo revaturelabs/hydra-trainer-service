@@ -1,13 +1,16 @@
 package com.revature.hydratrainerservice.repo;
 
+import com.revature.hydratrainerservice.model.Tier;
 import com.revature.hydratrainerservice.model.Trainer;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import io.swagger.annotations.Api;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import io.swagger.annotations.Api;
+import java.util.Set;
 
 @Repository
 @Api
-public interface TrainerRepo extends JpaRepository<Trainer, Integer> {
+public interface TrainerRepo extends CrudRepository<Trainer, Integer> {
+    Set<Trainer> findByTier(@Param("tier") Tier tier);
 }
