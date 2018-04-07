@@ -1,6 +1,6 @@
-package com.revature.hydratrainerservice.repo;
+package com.revature.hydra.trainer.repo;
 
-import com.revature.hydratrainerservice.model.Trainer;
+import com.revature.hydra.trainer.model.Trainer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

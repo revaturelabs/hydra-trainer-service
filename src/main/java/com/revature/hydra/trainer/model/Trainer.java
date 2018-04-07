@@ -1,4 +1,4 @@
-package com.revature.hydratrainerservice.model;
+package com.revature.hydra.trainer.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

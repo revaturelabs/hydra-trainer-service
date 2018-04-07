@@ -1,4 +1,4 @@
-package com.revature.hydratrainerservice;
+package com.revature.hydra.trainer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
