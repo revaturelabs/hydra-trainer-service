@@ -1,16 +1,16 @@
 spring:
   profiles:
-    active: trainer
+    active: production
 
 ---
 
 spring:
+  profiles: production
   application:
     name: trainer
   cloud:
     services:
       registrationMethod: direct
-  profiles: trainer
   jpa:
     hibernate:
       ddl-auto: update
@@ -69,5 +69,3 @@ management:
 security:
   basic:
     enabled: false
-
-
