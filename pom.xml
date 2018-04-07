@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.revature</groupId>
-	<artifactId>hydra-trainer-service</artifactId>
+	<artifactId>hydra-trainer</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
