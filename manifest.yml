@@ -1,5 +1,5 @@
 ---
 applications:
 - name: trainer
-  path: ./target/trainer-0.0.1.jar
+  path: ./target/hydra-trainer-0.0.1.jar
   no-route: true
