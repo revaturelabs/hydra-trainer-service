@@ -2,7 +2,7 @@ package com.revature.hydra.trainer.model;
 
 import javax.persistence.*;
 
-import com.revature.hydratrainerservice.model.Tier;
+import com.revature.hydra.trainer.model.Tier;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
